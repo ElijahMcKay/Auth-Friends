@@ -47,7 +47,7 @@ function Friends(props) {
             })
             .catch(err => {
                 console.log(friendArr); 
-                console.log(err.response);
+                console.log(err.response); 
             })
     }   
 

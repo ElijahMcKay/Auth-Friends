@@ -13,18 +13,19 @@ function Friends(props) {
     })
 
     useEffect(() => {
-        axiosWithAuth()
-        .get('http://localhost:5000/api/friends')
-        .then(res => {
-            // localStorage.setItem('token', res.data.payload)
-            // props.history.push('/friends'); 
-            setFriendArr(res.data)
-            console.log(res.data); 
-        })
-        .catch(err => {
-            console.log(friendArr); 
-            console.log(err.response);
-        })
+        getFriends(); 
+        // axiosWithAuth()
+        // .get('http://localhost:5000/api/friends')
+        // .then(res => {
+        //     // localStorage.setItem('token', res.data.payload)
+        //     // props.history.push('/friends'); 
+        //     setFriendArr(res.data)
+        //     console.log(res.data); 
+        // })
+        // .catch(err => {
+        //     console.log(friendArr); 
+        //     console.log(err.response);
+        // })
     }, []); 
 
     const handleChange = e => {
@@ -42,7 +43,7 @@ function Friends(props) {
             .then(res => {
                 // localStorage.setItem('token', res.data.payload)
                 // props.history.push('/friends'); 
-                console.log(res.data); 
+                // console.log(res.data); 
             })
             .catch(err => {
                 console.log(friendArr); 
@@ -50,21 +51,21 @@ function Friends(props) {
             })
     }   
 
-    // const getFriends = (e) => {
-    //     e.preventDefault(); 
-    //     axiosWithAuth()
-    //     .get('http://localhost:5000/api/friends')
-    //     .then(res => {
-    //         // localStorage.setItem('token', res.data.payload)
-    //         // props.history.push('/friends'); 
-    //         setFriendArr(res.data)
-    //         console.log(res.data); 
-    //     })
-    //     .catch(err => {
-    //         console.log(friendArr); 
-    //         console.log(err.response);
-    //     })
-    // }   
+    const getFriends = () => {
+        
+        axiosWithAuth()
+        .get('http://localhost:5000/api/friends')
+        .then(res => {
+            // localStorage.setItem('token', res.data.payload)
+            // props.history.push('/friends'); 
+            setFriendArr(res.data)
+            console.log(res.data); 
+        })
+        .catch(err => {
+            console.log(friendArr); 
+            console.log(err.response);
+        })
+    }   
     
 
     return (
@@ -93,6 +94,7 @@ function Friends(props) {
                 </label>
                 <button>Add New Friend</button>
             </form>
+            <button onClick={getFriends}>Refresh List (Do this after adding a Friend)</button>
             {/* <button onClick={getFriends}>Get Your List of Friends</button> */}
             {friendArr.map((friend) => (
                 <Friend state={friend} key={friend.id} />

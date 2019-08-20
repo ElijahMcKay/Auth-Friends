@@ -4,23 +4,18 @@ import { Route, Link, Router } from 'react-router-dom';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute'; 
 import Friends from './components/Friends'; 
+import Home from './components/Home'; 
 
 function App() {
   return (
-    <Router>
       <div className="App">
-        <ul>
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/friends">Your Friends</Link>
-          </li>
-        </ul>
+        <Link to="/login">Login        </Link>
+        <Link to="/friends">                     Your Friends</Link>
+        <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
-        <PrivateRoute exact path="/friends" component={Friends} />
+        <PrivateRoute path="/friends" component={Friends} />
       </div>
-    </Router>
+    
   );
 }
 
